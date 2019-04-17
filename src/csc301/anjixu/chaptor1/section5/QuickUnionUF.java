@@ -55,8 +55,7 @@ public class QuickUnionUF {
      */
     public int find(int p) {
         int root = p;
-        while (p != parent[p])
-            p = parent[p];
+        while (root != parent[root]) root = parent[root];
         while(p!= root){
             int newp = parent[p];
             parent[p] = root;
