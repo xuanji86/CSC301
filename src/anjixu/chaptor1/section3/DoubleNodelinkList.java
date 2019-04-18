@@ -45,7 +45,7 @@ public abstract class DoubleNodelinkList<Item> implements Iterable<Item> {
         N++;
     }
 
-    public void inserLast(Item item) {
+    public void insertLast(Item item) {
         DoubleNode<Item> node = new DoubleNode<Item>();
         node.item = item;
         if (isEmpty()) {
@@ -58,5 +58,37 @@ public abstract class DoubleNodelinkList<Item> implements Iterable<Item> {
         }
         N++;
     }
+    public Item deleteFirst(){
+        Item item = (Item) first.item;
+        if(isEmpty()){
+            throw new RuntimeException("List is empty!");
+        }
+        else if (first.next != null){
+            first.next.prev= null;
+            
+        }
+        else{
+            last = null;
+        }
+        first = first.next;
+        N--;
+        return item;
+    }
+    public Item deleteLast(){
+        Item item = (Item) first.item;
+        if(isEmpty()){
+            throw new RuntimeException("List is empty!");
+        }
+        else if(last.prev != null){
+            last.prev.next = null;
+        }
+        else{
+            first = null;
+        }
+        last = last.prev;
+        N--;
+        return item;
+    }
+    
 
 }
