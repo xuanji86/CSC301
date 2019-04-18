@@ -89,6 +89,34 @@ public abstract class DoubleNodelinkList<Item> implements Iterable<Item> {
         N--;
         return item;
     }
+    public void insertAfter(Item afterNode, Item item){
+        if (isEmpty()){
+            throw new RuntimeException("List is empty");
+        }
+        DoubleNode currentNode;
+        
+        for(currentNode = first; currentNode != null; currentNode = currentNode.next){
+            if(currentNode.item == afterNode){
+                break;
+            }
+        }
+        if (currentNode != null){
+            DoubleNode newNode = new DoubleNode();
+            newNode.item = item;
+            
+            DoubleNode nextNode = currentNode.next;
+            currentNode.next = newNode;
+            newNode.next = nextNode;
+            newNode.next = nextNode;
+            
+            if(newNode.next == null){
+                last = newNode;
+            } 
+            else{
+                newNode.next.prev = newNode;
+            }
+            N++;
+        }
+    }
     
-
 }
