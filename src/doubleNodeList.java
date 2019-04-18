@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package anjixu.chaptor1.section3;
+
 
 /**
  *
@@ -28,7 +28,7 @@ public class doubleNodeList<Item> {
     }
 
     public static <T> void insertAsFirst(doubleNodeList<T> d1, T e) {
-        DoubleNode<T> node = new DoubleNode<T>();
+        DoubleNode<T> node = new DoubleNode<>();
         node.item = e;
         node.prev = null;
         node.next = d1.first;
@@ -41,7 +41,7 @@ public class doubleNodeList<Item> {
     }
 
     public static <T> void insertAsLast(doubleNodeList<T> d1, T e) {
-        DoubleNode<T> node = new DoubleNode<T>();
+        DoubleNode<T> node = new DoubleNode<>();
         node.item = e;
         node.prev = d1.last;
         node.next = null;
@@ -90,7 +90,7 @@ public class doubleNodeList<Item> {
             insertAsFirst(d1, e);
         }
         else{
-            DoubleNode<T> newNode = new DoubleNode<T>();
+            DoubleNode<T> newNode = new DoubleNode<>();
             newNode.item = e;
             newNode.prev = node.prev;
             newNode.next = node;
@@ -106,7 +106,7 @@ public class doubleNodeList<Item> {
             insertAsLast(d1,e);
         }
         else{
-            DoubleNode<T> newNode = new DoubleNode<T>();
+            DoubleNode<T> newNode = new DoubleNode<>();
             newNode.item = e;
             newNode.prev = node;
             newNode.next = node.next;
@@ -116,7 +116,6 @@ public class doubleNodeList<Item> {
     }
     public static <T> void deleteNode(doubleNodeList<T> d1, DoubleNode<T> node){
         if (node == null){
-            return;
         }
         else if  (node == d1.first){
             deleteFirst(d1);
@@ -147,5 +146,30 @@ public class doubleNodeList<Item> {
             System.out.println(node.item);
             node = node.next;
         }
+    }
+    public static void main(String[] args){
+       doubleNodeList<String> d1 = new doubleNodeList<String>();
+       doubleNodeList.insertAsFirst(d1,"a");
+       doubleNodeList.insertAsFirst(d1,"b");
+       doubleNodeList.insertAsFirst(d1,"c");
+       doubleNodeList.print(d1);
+       System.out.println("-----------");
+       doubleNodeList.insertAsLast(d1,"1");
+       doubleNodeList.insertAsLast(d1,"2");
+       doubleNodeList.insertAsLast(d1,"3");
+       doubleNodeList.print(d1);
+       System.out.println("-----------");
+       doubleNodeList.deleteFirst(d1);
+       doubleNodeList.deleteLast(d1);
+       doubleNodeList.print(d1);
+       System.out.println("-----------");
+       doubleNodeList.DoubleNode<String> node = doubleNodeList.search(d1,"b");
+       doubleNodeList.insertBefore(d1, node, "O");
+       doubleNodeList.insertAfter(d1,node,"P");
+       doubleNodeList.print(d1);
+       System.out.println("-----------");
+       node = doubleNodeList.search(d1,"P");
+       doubleNodeList.deleteNode(d1, node);
+       doubleNodeList.print(d1);
     }
 }
