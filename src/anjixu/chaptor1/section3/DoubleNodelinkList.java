@@ -144,6 +144,7 @@ public class DoubleNodelinkList<Item> implements Iterable<Item> {
         if(currentNode != last){
         currentNode.prev.next = currentNode.next;
         currentNode.next.prev = currentNode.prev;
+        N--;
         }
         else{
             deleteLast();
