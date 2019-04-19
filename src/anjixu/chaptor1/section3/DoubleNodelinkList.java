@@ -90,46 +90,64 @@ public class DoubleNodelinkList<Item> implements Iterable<Item> {
         return item;
     }
 
-    public void insertbefore(DoubleNode beforeNode, Item item) {
+    public void insertbefore(Item A, Item item) {
         if (isEmpty()) {
             throw new RuntimeException("List is empty");
+        }
+        DoubleNode Node = first;
+        while (Node.item != A) {
+            Node = Node.next;
+            if (Node == null) {
+                return;
+            }
         }
         DoubleNode currentNode = new DoubleNode();
         currentNode.item = item;
-        if (beforeNode.prev != null) {
-            currentNode.prev = beforeNode.prev;
-            currentNode.next = beforeNode;
-            beforeNode.prev = currentNode;
-            currentNode.prev.next = currentNode;
-            N++;
-        } else {
-            insertFirst(item);
-        }
+        currentNode.prev = Node.prev;
+        currentNode.next = Node;
+        Node.prev.next = currentNode;
+        Node.prev = currentNode;
+        N++;
     }
 
-    public void insertAfter(DoubleNode afterNode, Item item) {
+    public void insertAfter(Item A, Item item) {
         if (isEmpty()) {
             throw new RuntimeException("List is empty");
+        }
+        DoubleNode Node = first;
+        while (Node.item != A) {
+            Node = Node.next;
+            if (Node == null) {
+                return;
+            }
         }
         DoubleNode currentNode = new DoubleNode();
         currentNode.item = item;
-        if (afterNode != null) {
-            currentNode.prev = afterNode;
-            currentNode.next = afterNode.next;
-            afterNode.next.prev = currentNode;
-            afterNode.next = currentNode;
-            N++;
-        } else {
-            insertLast(item);
-        }
+        currentNode.prev = Node;
+        currentNode.next = Node.next;
+        Node.next.prev = currentNode;
+        Node.next = currentNode;
+        N++;
     }
 
-    public void deleteNode(DoubleNode currentNode) {
+    public void deleteNode(Item A) {
         if (isEmpty()) {
             throw new RuntimeException("List is empty");
         }
+        DoubleNode currentNode = first;
+        while(currentNode.item != A){
+            currentNode = currentNode.next;
+            if(currentNode == null){
+                return;
+            }
+        }
+        if(currentNode != last){
         currentNode.prev.next = currentNode.next;
         currentNode.next.prev = currentNode.prev;
+        }
+        else{
+            deleteLast();
+        }
     }
 
     @Override
@@ -157,11 +175,24 @@ public class DoubleNodelinkList<Item> implements Iterable<Item> {
             return item;
         }
     }
-    public static void main(String[] arg){
+
+    public static void main(String[] arg) {
         DoubleNodelinkList<String> doublelinkedlist = new DoubleNodelinkList<>();
         doublelinkedlist.insertFirst("1");
         doublelinkedlist.insertLast("10");
+        doublelinkedlist.insertbefore("10", "5");
+        doublelinkedlist.insertAfter("1", "2");
+        for (String item : doublelinkedlist) {
+            System.out.println(item);
+        }
+        System.out.println("--------------");
+        doublelinkedlist.deleteFirst();
+        doublelinkedlist.deleteLast();
+        doublelinkedlist.insertFirst("1");
+        doublelinkedlist.deleteNode("2");
+        for (String item : doublelinkedlist) {
+            System.out.println(item);
+        }
 
-        System.out.println(doublelinkedlist);
     }
 }
