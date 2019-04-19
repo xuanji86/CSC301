@@ -134,10 +134,10 @@ public abstract class DoubleNodelinkList<Item> implements Iterable<Item> {
 
     @Override
     public Iterator<Item> iterator() {
-        return new DoublyLinkedListIterator();
+        return new DoubleLinkedlistIterator();
     }
 
-    private class DoublyLinkedListIterator implements Iterator<Item> {
+    private class DoubleLinkedlistIterator implements Iterator<Item> {
 
         int index = 0;
         DoubleNode currentNode = first;
