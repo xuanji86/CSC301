@@ -11,7 +11,7 @@ import java.util.Iterator;
  *
  * @author xuanji
  */
-public abstract class DoubleNodelinkList<Item> implements Iterable<Item> {
+public class DoubleNodelinkList<Item> implements Iterable<Item> {
 
     private DoubleNode first;
     private DoubleNode last;
@@ -158,6 +158,10 @@ public abstract class DoubleNodelinkList<Item> implements Iterable<Item> {
         }
     }
     public static void main(String[] arg){
-        
+        DoubleNodelinkList<String> doublelinkedlist = new DoubleNodelinkList<>();
+        doublelinkedlist.insertFirst("1");
+        doublelinkedlist.insertLast("10");
+
+        System.out.println(doublelinkedlist);
     }
 }
