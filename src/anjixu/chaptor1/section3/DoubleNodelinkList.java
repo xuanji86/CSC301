@@ -5,6 +5,8 @@
  */
 package anjixu.chaptor1.section3;
 
+import edu.princeton.cs.algs4.StdIn;
+import edu.princeton.cs.algs4.StdOut;
 import java.util.Iterator;
 
 /**
@@ -98,7 +100,7 @@ public class DoubleNodelinkList<Item> implements Iterable<Item> {
         while (Node.item != A) {
             Node = Node.next;
             if (Node == null) {
-                return;
+                insertFirst(item);
             }
         }
         DoubleNode currentNode = new DoubleNode();
@@ -118,7 +120,7 @@ public class DoubleNodelinkList<Item> implements Iterable<Item> {
         while (Node.item != A) {
             Node = Node.next;
             if (Node == null) {
-                return;
+                insertFirst(item);
             }
         }
         DoubleNode currentNode = new DoubleNode();
@@ -135,18 +137,17 @@ public class DoubleNodelinkList<Item> implements Iterable<Item> {
             throw new RuntimeException("List is empty");
         }
         DoubleNode currentNode = first;
-        while(currentNode.item != A){
+        while (currentNode.item != A) {
             currentNode = currentNode.next;
-            if(currentNode == null){
+            if (currentNode == null) {
                 return;
             }
         }
-        if(currentNode != last){
-        currentNode.prev.next = currentNode.next;
-        currentNode.next.prev = currentNode.prev;
-        N--;
-        }
-        else{
+        if (currentNode != last) {
+            currentNode.prev.next = currentNode.next;
+            currentNode.next.prev = currentNode.prev;
+            N--;
+        } else {
             deleteLast();
         }
     }
@@ -178,22 +179,39 @@ public class DoubleNodelinkList<Item> implements Iterable<Item> {
     }
 
     public static void main(String[] arg) {
-        DoubleNodelinkList<String> doublelinkedlist = new DoubleNodelinkList<>();
-        doublelinkedlist.insertFirst("1");
-        doublelinkedlist.insertLast("10");
-        doublelinkedlist.insertbefore("10", "5");
-        doublelinkedlist.insertAfter("1", "2");
-        for (String item : doublelinkedlist) {
-            System.out.println(item);
+
+        DoubleNodelinkList<String> ops = new DoubleNodelinkList<>();
+        DoubleNodelinkList<Double> vals = new DoubleNodelinkList<>();
+        while (!StdIn.isEmpty()) {
+            String s = StdIn.readString();
+
+            if (s.equals("+")) {
+                ops.insertLast(s);
+            } else if (s.equals("-")) {
+                ops.insertLast(s);
+            } else if (s.equals("*")) {
+                ops.insertLast(s);
+            } else if (s.equals("/")) {
+                ops.insertLast(s);
+            } else if (s.equals(")")) {
+                String op = ops.deleteLast();
+                if (op.equals("+")) {
+                    vals.insertLast(vals.deleteLast() + vals.deleteLast());
+                } else if (op.equals("-")){
+                    vals.insertLast(vals.deleteLast() - vals.deleteLast());
+                }
+                else if (op.equals("*")) {
+                    vals.insertLast(vals.deleteLast() * vals.deleteLast());
+                }
+                else if (op.equals("/")){
+                    vals.insertLast(vals.deleteLast() / vals.deleteLast());
+                }
+            } else {
+                vals.insertLast(Double.parseDouble(s));
+            }
         }
-        System.out.println("--------------");
-        doublelinkedlist.deleteFirst();
-        doublelinkedlist.deleteLast();
-        doublelinkedlist.insertFirst("1");
-        doublelinkedlist.deleteNode("2");
-        for (String item : doublelinkedlist) {
-            System.out.println(item);
-        }
+        StdOut.println(vals.deleteLast());
 
     }
+
 }
