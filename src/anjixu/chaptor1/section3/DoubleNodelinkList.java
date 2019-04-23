@@ -182,8 +182,8 @@ public class DoubleNodelinkList<Item> implements Iterable<Item> {
 
         DoubleNodelinkList<String> ops = new DoubleNodelinkList<>();
         DoubleNodelinkList<Double> vals = new DoubleNodelinkList<>();
-        while (!StdIn.isEmpty()) {
-            String s = StdIn.readString();
+         String[] input = StdIn.readLine().split(" ");
+        for (String s:input) {
 
             if (s.equals("+")) {
                 ops.insertLast(s);
