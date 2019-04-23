@@ -79,7 +79,7 @@ public class DoubleNodelinkList<Item> implements Iterable<Item> {
     }
 
     public Item deleteLast() {
-        Item item = (Item) first.item;
+        Item item = (Item) last.item;
         if (isEmpty()) {
             throw new RuntimeException("List is empty!");
         } else if (last.prev != null) {
@@ -182,10 +182,11 @@ public class DoubleNodelinkList<Item> implements Iterable<Item> {
 
         DoubleNodelinkList<String> ops = new DoubleNodelinkList<>();
         DoubleNodelinkList<Double> vals = new DoubleNodelinkList<>();
-         String[] input = StdIn.readLine().split(" ");
-        for (String s:input) {
-
-            if (s.equals("+")) {
+        String[] input = StdIn.readLine().split(" ");
+        for (String s : input) {
+            StdOut.println(s);
+            if (s.equals("(")) {
+            } else if (s.equals("+")) {
                 ops.insertLast(s);
             } else if (s.equals("-")) {
                 ops.insertLast(s);
@@ -197,14 +198,16 @@ public class DoubleNodelinkList<Item> implements Iterable<Item> {
                 String op = ops.deleteLast();
                 if (op.equals("+")) {
                     vals.insertLast(vals.deleteLast() + vals.deleteLast());
-                } else if (op.equals("-")){
-                    vals.insertLast(vals.deleteLast() - vals.deleteLast());
-                }
-                else if (op.equals("*")) {
+                } else if (op.equals("-")) {
+                    Double tempt1 = vals.deleteLast();
+                    Double tempt2 = vals.deleteLast();
+                    vals.insertLast(tempt2 - tempt1);
+                } else if (op.equals("*")) {
                     vals.insertLast(vals.deleteLast() * vals.deleteLast());
-                }
-                else if (op.equals("/")){
-                    vals.insertLast(vals.deleteLast() / vals.deleteLast());
+                } else if (op.equals("/")) {
+                    Double tempt1 = vals.deleteLast();
+                    Double tempt2 = vals.deleteLast();
+                    vals.insertLast(tempt2 / tempt1);
                 }
             } else {
                 vals.insertLast(Double.parseDouble(s));
