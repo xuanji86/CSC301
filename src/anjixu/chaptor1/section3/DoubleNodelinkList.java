@@ -197,13 +197,17 @@ public class DoubleNodelinkList<Item> implements Iterable<Item> {
             } else if (s.equals(")")) {
                 String op = ops.deleteLast();
                 if (op.equals("+")) {
-                    vals.insertLast(vals.deleteLast() + vals.deleteLast());
+                    Double tempt1 = vals.deleteLast();
+                    Double tempt2 = vals.deleteLast();
+                    vals.insertLast( tempt1 + tempt2);
                 } else if (op.equals("-")) {
                     Double tempt1 = vals.deleteLast();
                     Double tempt2 = vals.deleteLast();
                     vals.insertLast(tempt2 - tempt1);
                 } else if (op.equals("*")) {
-                    vals.insertLast(vals.deleteLast() * vals.deleteLast());
+                    Double tempt1 = vals.deleteLast();
+                    Double tempt2 = vals.deleteLast();
+                    vals.insertLast(tempt1 * tempt2);
                 } else if (op.equals("/")) {
                     Double tempt1 = vals.deleteLast();
                     Double tempt2 = vals.deleteLast();
