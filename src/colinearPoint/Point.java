@@ -1,6 +1,11 @@
+package colinearPoint;
 
+
+import edu.princeton.cs.algs4.In;
 import java.util.Comparator;
 import edu.princeton.cs.algs4.StdDraw;
+import edu.princeton.cs.algs4.StdOut;
+import java.util.Arrays;
 
 public class Point implements Comparable<Point> {
 
@@ -88,7 +93,22 @@ public class Point implements Comparable<Point> {
      * @return the Comparator that defines this ordering on points
      */
     public Comparator<Point> slopeOrder() {
-        
+        return new slopeOrder();
+    }
+    
+    private class slopeOrder implements Comparator<Point>{
+        public int compare(Point p1,Point p2){
+            double slope1 = slopeTo(p1);
+            double slope2 = slopeTo(p2);
+            if(slope1< slope2){
+                return -1;
+            }
+            else if(slope1> slope2){
+                return 1;
+            }else{
+                return 0;
+            }
+        }
     }
 
     /**
@@ -101,12 +121,5 @@ public class Point implements Comparable<Point> {
     public String toString() {
         /* DO NOT MODIFY */
         return "(" + x + ", " + y + ")";
-    }
-
-    /**
-     * Unit tests the Point data type.
-     */
-    public static void main(String[] args) {
-        /* YOUR CODE HERE */
     }
 }
