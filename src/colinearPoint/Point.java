@@ -122,4 +122,8 @@ public class Point implements Comparable<Point> {
         /* DO NOT MODIFY */
         return "(" + x + ", " + y + ")";
     }
+    
+    public static void main(String[] args){
+        
+    }
 }
