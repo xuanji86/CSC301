@@ -5,7 +5,6 @@
  */
 package colinearPoint;
 
-import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdDraw;
 import edu.princeton.cs.algs4.StdOut;
 
@@ -30,7 +29,7 @@ public class Brute {
                         Point q = points[j];
                         Point r = points[k];
                         Point s = points[l];
-                        if(p.slopeTo(q) == q.slopeTo(r) && q.slopeTo(r) == r.slopeTo(s)){
+                        if(p.slopeTo(q) == p.slopeTo(r) && p.slopeTo(q) == p.slopeTo(s)){
                             StdOut.println(p+" -> "+ q + "->" + r + "->" + s);
                             p.drawTo(s);
                         }
@@ -47,24 +46,7 @@ public class Brute {
 
     public static void main(String[] args) {
 
-            In in = new In(args[0]); 
-            int n = in.readInt();
-            StdOut.println("total "+n+" points");
-            Point[] points = new Point[n];
-            for (int i = 0; i < n; i++) {
-                int x = in.readInt();
-                int y = in.readInt();
-                StdOut.println("("+x+","+y+")"); 
-                points[i] = new Point(x,y);
-            }       
-
-            StdDraw.setXscale(0, 32768);
-            StdDraw.setYscale(0, 32768);
-            for(Point p:points){
-                p.draw();
-            }
-            StdDraw.show();
-       
+           
     }
 
     
