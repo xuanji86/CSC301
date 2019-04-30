@@ -36,11 +36,14 @@ public class fast {
             return;
         }
         for(int i = 0; i < num-1;i++){
-            int tempPointNum = 0;
+            int tempPointsNum = 0;
             Point[] tempPoints = new Point[num-1];
             
             for(int j= 0; j< num; j++){
-                if(i != j)
+                if(i != j){
+                    tempPoints[tempPointsNum++] = clone[j];
+                }
+                Arrays.sort(tempPoints,clone[i].slopeOrder());
             }
         }
     }
