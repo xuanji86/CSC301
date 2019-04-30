@@ -9,20 +9,16 @@ import edu.princeton.cs.algs4.StdDraw;
 import edu.princeton.cs.algs4.StdOut;
 
 import java.util.Arrays;
-import org.w3c.dom.Node;
 
 /**
  *
  * @author Anji Xu
  */
 public class BruteCollinearPoints {
-    private int lineNumber;
-    private Node last;
     public BruteCollinearPoints(Point[] points){
         if(points == null){
             throw new NullPointerException();
         }
-        lineNumber = 0;
         int num = points.length;
         Arrays.sort(points);
         for(int i = 0;i < num; i++){
@@ -34,8 +30,8 @@ public class BruteCollinearPoints {
                         Point r = points[k];
                         Point s = points[l];
                         if(p.slopeTo(q) == p.slopeTo(r) && p.slopeTo(q) == p.slopeTo(s)){
-
-                            lineNumber++;
+                            StdOut.println(p+" -> "+ q + "->" + r + "->" + s);
+                            p.drawTo(s);
                         }
                     }
                 }
@@ -43,13 +39,8 @@ public class BruteCollinearPoints {
         }
 
     }
-    public int numberOfSegments(){
-        return lineNumber;
-    }
-    public LineSegment[] segments(){
-        LineSegment[] lines = new LineSegment[lineNumber];
-        
-    }
+    
+    
     
 
 
