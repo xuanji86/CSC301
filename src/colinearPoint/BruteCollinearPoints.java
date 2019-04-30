@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package colinearPoint;
+
 
 import edu.princeton.cs.algs4.StdDraw;
 import edu.princeton.cs.algs4.StdOut;
@@ -14,8 +14,8 @@ import java.util.Arrays;
  *
  * @author Anji Xu
  */
-public class Brute {
-    public Brute(Point[] points){
+public class BruteCollinearPoints {
+    public BruteCollinearPoints(Point[] points){
         if(points == null){
             throw new NullPointerException();
         }
@@ -37,7 +37,7 @@ public class Brute {
                 }
             }
         }
-        StdDraw.show(0);
+
     }
     
     
