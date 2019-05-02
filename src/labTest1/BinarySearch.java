@@ -15,7 +15,7 @@ public class BinarySearch {
 
     public static int[] binarySearch2D(int[][] data, int key, int low, int high) {
         //Arrays.sort(data);
-        int length = data[0].length;
+        int length = data[1].length;
         int middleX = 0;
         while (high >= low) {
             middleX = (low + high) / 2;
@@ -48,7 +48,7 @@ public class BinarySearch {
     }
 
     public static void main(String[] args) {
-        int[][] data = {{1, 2, 3, 4, 5}, {11, 12, 13, 14, 15}, {21, 22, 23, 24, 25}, {31, 32, 33, 34, 35}, {41, 42, 43, 44, 45}};
+        int[][] data = {{1, 2, 3, 4, 5,6}, {11, 12, 13, 14, 15}, {21, 22, 23, 24, 25}, {31, 32, 33, 34, 35}, {41, 42, 43, 44, 45}};
         int[] index = binarySearch2D(data, 43, 0, data.length - 1);
         System.out.println(index[0] + " " + index[1]);
 
