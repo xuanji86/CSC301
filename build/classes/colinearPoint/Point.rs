@@ -1,2 +1,0 @@
-Point$slopeOrder
-Point

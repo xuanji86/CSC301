@@ -134,13 +134,13 @@ public class inversion {
     }
 
     public static void main(String[] args) {
-        int[] a = StdIn.readAllInts();
+        Integer[] a = {4,1,3,2,67};
         int n = a.length;
         Integer[] b = new Integer[n];
         for (int i = 0; i < n; i++) {
             b[i] = a[i];
         }
         StdOut.println(inversion.count(a));
-        StdOut.println(inversion.count(b));
+        //StdOut.println(inversion.count(b));
     }
 }
