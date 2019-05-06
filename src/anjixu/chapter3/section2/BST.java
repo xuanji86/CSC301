@@ -5,17 +5,11 @@
  */
 package anjixu.chapter3.section2;
 
-import edu.princeton.cs.algs4.BinarySearchST;
-import edu.princeton.cs.algs4.LinearProbingHashST;
 import edu.princeton.cs.algs4.Queue;
-import edu.princeton.cs.algs4.RedBlackBST;
-import edu.princeton.cs.algs4.ST;
-import edu.princeton.cs.algs4.SeparateChainingHashST;
-import edu.princeton.cs.algs4.SequentialSearchST;
+import edu.princeton.cs.algs4.StdDraw;
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 import java.util.NoSuchElementException;
-
 
 /**
  *
@@ -23,15 +17,17 @@ import java.util.NoSuchElementException;
  */
     public class BST<Key extends Comparable<Key>, Value> {
 
-        private Node root;             // root of BST
+        Node root;
 
-        private class Node {
+        private int treeLevel;
 
-            private Key key;           // sorted by key
-            private Value val;         // associated data
-            private Node left, right;  // left and right subtrees
-            private int size;          // number of nodes in subtree
+        public class Node {
 
+            public Key key;           // sorted by key
+            public Value val;         // associated data
+            public Node left, right;  // left and right subtrees
+            public int size;          // number of nodes in subtree
+            private double xCoordinate,yCoordinate;
             public Node(Key key, Value val, int size) {
                 this.key = key;
                 this.val = val;
@@ -571,7 +567,62 @@ import java.util.NoSuchElementException;
             }
             return keys;
         }
+        public void draw() {
+            treeLevel = 0;
+            setCoordinates(root, 0.9);
 
+            StdDraw.setPenColor(StdDraw.BLACK);
+            drawLines(root);
+            drawNodes(root);
+        }
+
+        private void setCoordinates(Node node, double distance) {
+            if (node == null) {
+                return;
+            }
+
+            setCoordinates(node.left, distance - 0.05);
+            node.xCoordinate = (0.5 + treeLevel++) / size();
+            node.yCoordinate = distance - 0.05;
+            setCoordinates(node.right, distance - 0.05);
+        }
+
+        private void drawLines(Node node) {
+            if (node == null) {
+                return;
+            }
+
+            drawLines(node.left);
+
+            if (node.left != null) {
+                StdDraw.line(node.xCoordinate, node.yCoordinate, node.left.xCoordinate, node.left.yCoordinate);
+            }
+            if (node.right != null) {
+                StdDraw.line(node.xCoordinate, node.yCoordinate, node.right.xCoordinate, node.right.yCoordinate);
+            }
+
+            drawLines(node.right);
+        }
+
+        private void drawNodes(Node node) {
+            if (node == null) {
+                return;
+            }
+
+            double nodeRadius = 0.032;
+
+            drawNodes(node.left);
+
+            StdDraw.setPenColor(StdDraw.WHITE);
+            //Clear the node circle area
+            StdDraw.filledCircle(node.xCoordinate, node.yCoordinate, nodeRadius);
+
+            StdDraw.setPenColor(StdDraw.BLACK);
+            StdDraw.circle(node.xCoordinate, node.yCoordinate, nodeRadius);
+            StdDraw.text(node.xCoordinate, node.yCoordinate, String.valueOf(node.key));
+
+            drawNodes(node.right);
+        }
         /**
          * ***********************************************************************
          * Check integrity of BST data structure.
@@ -641,7 +692,9 @@ import java.util.NoSuchElementException;
             }
             return true;
         }
-
+        
+        
+ 
         /**
          * Unit tests the {@code BST} data type.
          *
