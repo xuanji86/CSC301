@@ -7,6 +7,7 @@ package anjixu.chapter3.section2;
 
 import edu.princeton.cs.algs4.BinarySearchST;
 import edu.princeton.cs.algs4.LinearProbingHashST;
+import edu.princeton.cs.algs4.Queue;
 import edu.princeton.cs.algs4.RedBlackBST;
 import edu.princeton.cs.algs4.ST;
 import edu.princeton.cs.algs4.SeparateChainingHashST;
@@ -14,7 +15,7 @@ import edu.princeton.cs.algs4.SequentialSearchST;
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 import java.util.NoSuchElementException;
-import java.util.Queue;
+
 
 /**
  *
